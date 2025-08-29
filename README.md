@@ -54,7 +54,7 @@ Features and gameplay may change as new updates are added.
    - Open `src/frontend/index.html` in your browser
    - Or use [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) in VS Code
 
-3. **Optional (Node.js backend for scores):**
+3. **Node.js backend for scores:**
    ```bash
    cd src/backend
    npm install
