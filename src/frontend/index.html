@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="icon" type="image/png" href="assets/sprites/icon/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!--! HOME SCREEN  -->
+    <div id="homeScreen">
+        <h1>Snake Game</h1>
+        <img id="icon" src="assets/sprites/icon/icon.png" alt="">
+        <button id="playBtn">Play</button>
+        <button id="settingsBtn">Settings</button>
+        <button id="rulesBtn">Rules</button>
+    </div>
+
+    <!--! SETTINGS SCREEN -->
+    <div id="settingsScreen" style="display: none;">
+        <h1>Settings</h1>
+        <button id="soundsSetting">
+            Sounds
+            <span class="on material-symbols-outlined">
+                volume_up
+            </span>
+
+            <span class="off material-symbols-outlined hidden">
+                no_sound
+            </span>
+        </button>
+
+        <button id="modeSettings" aria-pressed="false" title="Toggle theme">
+            <span class="mode-text">Dark Mode</span>
+            <span class="dark material-symbols-outlined">
+                dark_mode
+            </span>
+
+            <span class="light material-symbols-outlined hidden">
+                light_mode
+            </span>
+        </button>
+
+        <button id="unitSizeSettingBtn">Board Size</button>
+
+        <button id="profileBtn">Profile</button>
+        
+        <button class="backBtn">Back</button>
+    </div>
+
+    <!--! RULES SCREEN  -->
+    <div id="rulesScreen" style="display: none;">
+        <h1>Rules</h1>
+        <div class="rules-content" id="rulesContent">
+            <div class="rules-box">
+                <h2>OBJECTIVE</h2>
+                <p>Eat food to grow your snake and score points. Survive as long as you can — hitting a wall or your own body ends the game (unless you are invincible).</p>
+            </div>
+
+            <div class="rules-box">
+                <h2>CONTROLS</h2>
+                <ul>
+                    <li>Use the arrow keys to steer the snake.</li>
+                    <li>During the Poison effect controls are inverted (left ↔ right, up ↔ down).</li>
+                </ul>
+            </div>
+
+            <div class="rules-box">
+                <h2>FOODS</h2>
+                <ul>
+                    <li>
+                        <img src="assets/sprites/foods/food_apple.png" class="powerUpIcon" alt="">
+                        <span>
+                            Apple - 
+                        </span>
+                        +1 point (default). Eating apples increases counters that cause other foods to appear.
+                    </li>
+
+                    <li>
+                        <img src="assets/sprites/foods/food_banana.png" class="powerUpIcon" alt="">
+                        <span>
+                            Banana - +3 points. Causes the snake to shrink by several segments (amount depends on board size).
+                        </span>
+                    </li>
+
+                    <li>
+                        <img src="assets/sprites/foods/food_orange.png" class="powerUpIcon" alt="">
+                        <span>
+                            Orange - +5 points. Grants invincibility for a short time (you can pass through the snake body without dying while active). Duration depends on board size.
+                        </span>
+                    </li>
+                    
+                    <li>
+                        <img src="assets/sprites/foods/food_grapes.png" class="powerUpIcon" alt="">
+                        <span>
+                            Grapes - +10 points. Activates ×2 score (points from food are doubled) for a short time. Duration depends on board size.
+                        </span>
+                    </li>
+                    <li>
+                        <img src="assets/sprites/foods/food_poison.png"class="powerUpIcon" alt="">
+                        <span>
+                            Poison - no points. When eaten it poisons the snake (controls invert) for 5 seconds. Poison spawns periodically and disappears if not eaten after a short time.
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="rules-box">
+                    <h2>GAME OVER</h2>
+                    <ul>
+                        <li>
+                            Game over occurs if the snake hits the wall or its body (unless invincible).
+                        </li>
+
+                        <li>
+                            When the game ends your score is saved (submitted once to the server).
+                        </li>
+
+                        <li>
+                            Use Reset to restart the current game, or Home to go back to menus.
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        <button class="backBtn">Back</button>
+    </div>
+
+    <!--! UNIT SIZE SCREEN  -->
+    <div id="unitSizeScreen" style="display: none;">
+        <h1>Board Size</h1>
+
+        <form id="unitSizeForm" aria-label="Board size">
+            <label for="" class="radio-btn">
+                <input type="radio" name="unitSize" value="28" checked>
+                <span class="radio-label">Small</span>
+            </label>
+            
+            <label for="" class="radio-btn">
+                <input type="radio" name="unitSize" value="20">
+                <span class="radio-label">Medium</span>
+            </label>
+            
+            <label for="" class="radio-btn">
+                <input type="radio" name="unitSize" value="15">
+                <span class="radio-label">Large</span>
+            </label>
+        </form>
+
+        <button class="backBtn">Back</button>
+    </div>
+
+    <!--! PROFILE SCREEN  -->
+    <div id="profileScreen" style="display: none;">
+        <h1>Profile</h1>
+        
+        <div class="profile-info">
+            <label for="playerNameInput">Player Name:</label>
+            <input type="text" id="playerNameInput" maxlength="20" placeholder="Enter your name">
+            <div class="name-preview">
+                Current Name: <span id="currentNameDisplay">Hero Pogi</span>
+            </div>
+        </div>
+        
+        <div class="profile-buttons">
+            <button id="saveNameBtn">Save Name</button>
+        </div>
+        
+        <button class="backBtn">Back</button>
+    </div>
+
+    <!--! DIFFICULTY SCREEN  -->
+    <div id="difficultyScreen" style="display: none;">
+        <h1>Difficulties</h1>
+        <button class="diffBtn" data-speed="110" data-diff="easy">Easy</button>
+        <button class="diffBtn" data-speed="100" data-diff="medium">Medium</button>
+        <button class="diffBtn" data-speed="80" data-diff="hard">Hard</button>
+        <button class="backBtn">Back</button>
+    </div>
+
+    <!--! GAME CONTAINER  -->
+    <div id="gameContainer" style="display: none;">
+        <div id="scoreWrapper">
+            <div id="scoreText"></div>
+            <div id="highScoreText"></div>
+        </div>
+
+        <div id="powerUpContainer">
+            <div id="poisonFoodTime" class="hidden">
+                <img src="assets/sprites/foods/food_poison.png" id="" class="powerUpIcon" alt="">
+                <span class="powerUpText"></span>
+            </div>
+
+            <div id="orangePowerUpTime" class="hidden">
+                <img src="assets/sprites/foods/food_orange.png" id="orangeIcon" class="powerUpIcon" alt="">
+                <span class="powerUpText"></span>
+            </div>
+
+            <div id="grapesPowerUpTime" class="hidden">
+                <img src="assets/sprites/foods/food_grapes.png" id="grapesIcon" class="powerUpIcon" alt="">
+                <span class="powerUpText"></span>
+            </div>
+            
+        </div>
+
+        <canvas id="gameBoard" width="420" height="420"></canvas>
+        
+
+
+        <button id="resetBtn">
+            <span class="material-symbols-outlined">
+                replay
+            </span>
+        </button>
+
+        <button id="backToDifficultyBtn">
+            <span class="material-symbols-outlined">
+                turn_left
+            </span>
+        </button>
+
+        <button id="homeBtn">
+            <span class="material-symbols-outlined">
+                home
+            </span>
+        </button>
+
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
+
