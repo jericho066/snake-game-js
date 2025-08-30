@@ -8,8 +8,6 @@ A modern, customizable Snake Game built with HTML, CSS, and JavaScript.
 - Multiple food types and power-ups
 - Sound effects
 - Light and dark mode
-- Responsive design (works on desktop and mobile)
-- Touch controls for mobile (swipe to move)
 - Difficulty and board size settings
 - Profile and high score tracking
 
