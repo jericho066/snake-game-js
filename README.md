@@ -26,6 +26,8 @@ A modern, customizable Snake Game built with HTML, CSS, and JavaScript.
 
 ![alt text](<demo.gif>)
 
+> **Note:** This project is designed for desktop browsers. Mobile controls and layout are not officially supported.
+
 ## Status
 
 🚧 **This project is currently under development.**  
@@ -38,7 +40,6 @@ Features and gameplay may change as new updates are added.
 - Avoid hitting the walls or your own tail.
 - Special foods grant power-ups or penalties.
 
-> **Note:** This project is designed for desktop browsers. Mobile controls and layout are not officially supported.
 
 ## Getting Started
 
